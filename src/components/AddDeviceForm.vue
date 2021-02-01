@@ -12,14 +12,20 @@
           <v-container>
             <v-row>
               <v-col cols="12" sm="12">
-                <v-text-field v-model="security_code" label="Security code*" required></v-text-field>
+                <v-text-field
+                  v-model="security_code"
+                  label="Security code*"
+                  required
+                ></v-text-field>
               </v-col>
             </v-row>
           </v-container>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" text @click="dialog = false">Close</v-btn>
+          <v-btn color="blue darken-1" text @click="dialog = false"
+            >Close</v-btn
+          >
           <v-btn color="blue darken-1" text @click="onAddDevice">Save</v-btn>
         </v-card-actions>
       </v-card>

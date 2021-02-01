@@ -50,7 +50,7 @@ export default {
   },
   computed: {
     ...mapState({
-      devices: (state) => state.DeviceModule.devices
+      devices: state => state.DeviceModule.devices
     })
   },
   created: async function() {
@@ -66,10 +66,10 @@ export default {
         };
         axios
           .post("http://localhost:3000/devices/add", name)
-          .then((res) => {
+          .then(res => {
             console.log("res", res);
           })
-          .catch((error) => {
+          .catch(error => {
             console.log(error);
           });
         this.name = "";

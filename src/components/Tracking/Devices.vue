@@ -3,7 +3,9 @@
     <v-card-title>
       <!-- <v-icon :color="gradient[1]" class="mr-12" size="64" @click="takePulse">{{icon}}</v-icon> -->
       <v-row align="start">
-        <div v-if="this.data" class="caption grey--text text-uppercase">{{ this.data.name }}</div>
+        <div v-if="this.data" class="caption grey--text text-uppercase">
+          {{ this.data.name }}
+        </div>
       </v-row>
 
       <v-spacer></v-spacer>
@@ -12,9 +14,16 @@
     <div v-if="this.data && this.data.name === 'Pump'">
       <v-row class="justify-space-around">
         <div class="image">
-          <v-img :src="require('../../assets/pump.png')" class="my-3 small-image-size" contain />
+          <v-img
+            :src="require('../../assets/pump.png')"
+            class="my-3 small-image-size"
+            contain
+          />
         </div>
-        <div class="d-flex align-content-center flex-wrap" @click="onControlActuator(pump)">
+        <div
+          class="d-flex align-content-center flex-wrap"
+          @click="onControlActuator(pump)"
+        >
           <v-switch v-model="pump" :label="`Pump: ${pump.toString()}`" />
         </div>
       </v-row>
@@ -30,7 +39,10 @@
           />
         </div>
         <div class="d-flex align-content-center flex-wrap">
-          <div class="d-flex align-content-center flex-wrap" @click="onControlActuator(lamp)">
+          <div
+            class="d-flex align-content-center flex-wrap"
+            @click="onControlActuator(lamp)"
+          >
             <v-switch v-model="lamp" :label="`Lamp: ${lamp.toString()}`" />
           </div>
         </div>
@@ -61,13 +73,18 @@ export default {
         _id: this.data._id,
         status: status
       };
-      let response = await axios.post("http://localhost:3000/actuators/control", payload);
+      let response = await axios.post(
+        "http://localhost:3000/actuators/control",
+        payload
+      );
       console.log(response.data);
     },
     getActuator: async function() {
       if (this.data._id) {
         try {
-          let response = await axios.get("http://localhost:3000/actuators/" + this.data._id);
+          let response = await axios.get(
+            "http://localhost:3000/actuators/" + this.data._id
+          );
           if (response.data.name === "Pump")
             if (response.data.status === "true") this.pump = true;
             else this.pump = false;

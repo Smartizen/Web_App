@@ -25,7 +25,11 @@
         </v-col>
       </v-col>
       <v-col cols="6">
-        <v-img :src="require('../assets/hydroponic-lettuce.jpg')" class="my-3" contain />
+        <v-img
+          :src="require('../assets/hydroponic-lettuce.jpg')"
+          class="my-3"
+          contain
+        />
       </v-col>
     </v-row>
   </div>

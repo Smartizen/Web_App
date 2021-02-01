@@ -13,10 +13,18 @@
         <v-container>
           <v-row>
             <v-col cols="12">
-              <v-text-field v-model="name" label="Legal Staff Name*" required></v-text-field>
+              <v-text-field
+                v-model="name"
+                label="Legal Staff Name*"
+                required
+              ></v-text-field>
             </v-col>
             <v-col cols="12">
-              <v-text-field v-model="email" label="Email*" required></v-text-field>
+              <v-text-field
+                v-model="email"
+                label="Email*"
+                required
+              ></v-text-field>
             </v-col>
             <v-col cols="12">
               <v-text-field
@@ -48,14 +56,21 @@
                 </template>
                 <v-date-picker v-model="date" no-title scrollable>
                   <v-spacer></v-spacer>
-                  <v-btn text color="primary" @click="menu = false">Cancel</v-btn>
-                  <v-btn text color="primary" @click="$refs.menu.save(date)">OK</v-btn>
+                  <v-btn text color="primary" @click="menu = false"
+                    >Cancel</v-btn
+                  >
+                  <v-btn text color="primary" @click="$refs.menu.save(date)"
+                    >OK</v-btn
+                  >
                 </v-date-picker>
               </v-menu>
             </v-col>
 
             <v-col cols="12" sm="6">
-              <v-text-field v-model="phonenumber" label="Phone Number"></v-text-field>
+              <v-text-field
+                v-model="phonenumber"
+                label="Phone Number"
+              ></v-text-field>
             </v-col>
 
             <v-col cols="12">
@@ -108,7 +123,12 @@ export default {
     farm: "",
     menu: false,
     image: [],
-    rules: [(value) => !value || value.size < 2000000 || "Avatar size should be less than 2 MB!"],
+    rules: [
+      value =>
+        !value ||
+        value.size < 2000000 ||
+        "Avatar size should be less than 2 MB!"
+    ],
     newStaff: {
       id: "add new staff",
       name: "add new staff",
@@ -133,7 +153,9 @@ export default {
         role: 2,
         phonenumber: this.phonenumber,
         image:
-          this.image !== [] ? this.image : "https://cdn.vuetifyjs.com/images/profiles/marcus.jpg",
+          this.image !== []
+            ? this.image
+            : "https://cdn.vuetifyjs.com/images/profiles/marcus.jpg",
         farmId: this.farm
       };
       let formData = new FormData();
@@ -142,7 +164,10 @@ export default {
       }
       //  Create new staff
       try {
-        let response = await axios.post("http://localhost:3000/users/createStaff", formData);
+        let response = await axios.post(
+          "http://localhost:3000/users/createStaff",
+          formData
+        );
         if (response.status === 201) {
           // create successfully
           this.$store.dispatch("validateToken");

@@ -13,11 +13,19 @@
         <v-container>
           <v-row>
             <v-col cols="12">
-              <v-text-field v-model="name" label="Legal Farm Name*" required></v-text-field>
+              <v-text-field
+                v-model="name"
+                label="Legal Farm Name*"
+                required
+              ></v-text-field>
             </v-col>
 
             <v-col cols="12">
-              <v-text-field v-model="location" label="Location*" required></v-text-field>
+              <v-text-field
+                v-model="location"
+                label="Location*"
+                required
+              ></v-text-field>
             </v-col>
 
             <v-file-input
@@ -61,20 +69,30 @@ export default {
     },
     date: new Date().toISOString().substr(0, 10),
     menu: false,
-    rules: [(value) => !value || value.size < 2000000 || "Avatar size should be less than 2 MB!"]
+    rules: [
+      value =>
+        !value ||
+        value.size < 2000000 ||
+        "Avatar size should be less than 2 MB!"
+    ]
   }),
   methods: {
     async onCreateFarm() {
       this.dialog = false;
       const payload = new FormData();
       let image =
-        this.image !== [] ? this.image : "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg";
+        this.image !== []
+          ? this.image
+          : "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg";
       payload.append("image", image);
       payload.append("name", this.name);
       payload.append("location", this.location);
 
       try {
-        let response = await axios.post("http://localhost:3000/farms/create", payload);
+        let response = await axios.post(
+          "http://localhost:3000/farms/create",
+          payload
+        );
         if (response.status === 201) {
           // create successfully
           this.$store.dispatch("validateToken");

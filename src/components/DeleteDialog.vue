@@ -2,7 +2,10 @@
   <v-dialog v-model="dialog" persistent max-width="290">
     <v-card>
       <v-card-title class="headline">Delete {{ objectName }} ?</v-card-title>
-      <v-card-text>Are you sure to delete this {{ objectName }} staff. You can't undo this action</v-card-text>
+      <v-card-text
+        >Are you sure to delete this {{ objectName }} staff. You can't undo this
+        action</v-card-text
+      >
       <v-card-actions>
         <v-spacer></v-spacer>
         <v-btn color="info" text @click="closeDialog">Cancel</v-btn>
@@ -41,5 +44,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

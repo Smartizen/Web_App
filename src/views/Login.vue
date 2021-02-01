@@ -59,7 +59,7 @@ export default {
       this.login({
         email: this.email,
         password: this.password
-      }).then((success) => {
+      }).then(success => {
         if (success) this.$router.push("/");
         else this.error = true;
       });

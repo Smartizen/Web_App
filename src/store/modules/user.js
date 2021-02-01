@@ -1,5 +1,6 @@
 import axios from "axios";
 import router from "../../router";
+import config from "../../../config";
 
 export default {
   state: {
@@ -8,14 +9,15 @@ export default {
     staffLabel: []
   },
   getters: {
-    isAuthenticated: (state) => !!state.user.name,
-    isHaveToken: (state) => !!state.token,
-    getUserInfo: (state) => state.user,
-    getStaffsLabel: (state) => state.staffLabel
+    isAuthenticated: state => !!state.user.firstname,
+    isHaveToken: state => !!state.token,
+    getUserInfo: state => state.user,
+    getStaffsLabel: state => state.staffLabel
   },
   mutations: {
     // update User info
     UPDATE_USER_INFO: (state, { user }) => {
+      console.log("user",user)
       return (state.user = user);
     },
     // update LeftBar status
@@ -30,8 +32,11 @@ export default {
   actions: {
     login: async ({ commit }, payload) => {
       try {
-        let response = await axios.post("http://localhost:3000/users/login", payload);
-        if (response.status === 200) {
+        let response = await axios.post(
+          config.dev.env.ROOT_API + "/auth/login",
+          payload
+        );
+        if (response.status === 201) {
           // store user token
           localStorage.setItem("user-token", response.data.token);
           commit("UPDATE_TOKEN", response.data);
@@ -47,8 +52,11 @@ export default {
     },
     register: async ({ commit }, payload) => {
       try {
-        let response = await axios.post("http://localhost:3000/users", payload);
-        if (response.status === 200) {
+        let response = await axios.post(
+          config.dev.env.ROOT_API + "/auth/signup",
+          payload
+        );
+        if (response.status === 201) {
           localStorage.setItem("user-token", response.data.token);
           commit("UPDATE_TOKEN", response.data);
           commit("UPDATE_USER_INFO", response.data);
@@ -60,7 +68,9 @@ export default {
     },
     validateToken: async ({ commit }) => {
       try {
-        let response = await axios.get("http://localhost:3000/users/me");
+        let response = await axios.get(config.dev.env.ROOT_API + "/auth", {
+          headers: localStorage.getItem("user-token")
+        });
         commit("UPDATE_USER_INFO", response.data);
         // update staff label
         commit("UPDATE_STAFFSLABEL", response.data.user);
@@ -74,7 +84,9 @@ export default {
     },
     logout: async ({ commit }) => {
       try {
-        let response = await axios.post("http://localhost:3000/users/me/logout");
+        let response = await axios.post(
+          config.dev.env.ROOT_API + "/auth/me/logout"
+        );
         if (response.data.success) {
           // remove token in localStorage
           localStorage.removeItem("user-token");
@@ -93,7 +105,9 @@ export default {
     },
     logoutAll: async ({ commit }) => {
       try {
-        let response = await axios.post("http://localhost:3000/users/me/logoutall");
+        let response = await axios.post(
+          config.dev.env.ROOT_API + "/auth/me/logoutall"
+        );
         if (response.data.success) {
           // remove token in localStorage
           localStorage.removeItem("user-token");

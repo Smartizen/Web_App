@@ -8,13 +8,26 @@
         <v-container>
           <v-row>
             <v-col cols="12">
-              <v-text-field v-model="data.name" label="Legal Staff Name*" required></v-text-field>
+              <v-text-field
+                v-model="data.name"
+                label="Legal Staff Name*"
+                required
+              ></v-text-field>
             </v-col>
             <v-col cols="12">
-              <v-text-field v-model="data.email" label="Email*" required></v-text-field>
+              <v-text-field
+                v-model="data.email"
+                label="Email*"
+                required
+              ></v-text-field>
             </v-col>
             <v-col cols="12">
-              <v-text-field v-model="data.password" label="Password*" type="password" required></v-text-field>
+              <v-text-field
+                v-model="data.password"
+                label="Password*"
+                type="password"
+                required
+              ></v-text-field>
             </v-col>
 
             <v-col cols="24">
@@ -38,14 +51,24 @@
                 </template>
                 <v-date-picker v-model="data.dateOfBirth" no-title scrollable>
                   <v-spacer></v-spacer>
-                  <v-btn text color="primary" @click="menu = false">Cancel</v-btn>
-                  <v-btn text color="primary" @click="$refs.menu.save(data.dateOfBirth)">OK</v-btn>
+                  <v-btn text color="primary" @click="menu = false"
+                    >Cancel</v-btn
+                  >
+                  <v-btn
+                    text
+                    color="primary"
+                    @click="$refs.menu.save(data.dateOfBirth)"
+                    >OK</v-btn
+                  >
                 </v-date-picker>
               </v-menu>
             </v-col>
 
             <v-col cols="12" sm="6">
-              <v-text-field v-model="data.phonenumber" label="Phone Number"></v-text-field>
+              <v-text-field
+                v-model="data.phonenumber"
+                label="Phone Number"
+              ></v-text-field>
             </v-col>
 
             <v-col cols="12">
@@ -108,7 +131,9 @@ export default {
     async onUpdate() {
       try {
         console.log(this.data);
-        const response = await axios.patch(`http://localhost:3000/users/staff/${this.data._id}`);
+        const response = await axios.patch(
+          `http://localhost:3000/users/staff/${this.data._id}`
+        );
         if (response.status === 200) {
           console.log(response.data.message);
         }
@@ -123,5 +148,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

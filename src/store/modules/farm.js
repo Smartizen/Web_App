@@ -6,8 +6,8 @@ export default {
     farmDetail: {}
   },
   getters: {
-    getFarmLabel: (state) => state.farmLabel,
-    getFarmDetail: (state) => state.farmDetail
+    getFarmLabel: state => state.farmLabel,
+    getFarmDetail: state => state.farmDetail
   },
   mutations: {
     // update LeftBar status

@@ -5,29 +5,39 @@
         <v-avatar size="62">
           <v-img v-bind:src="this.data.image" />
         </v-avatar>
-        <h2>{{this.data.name}}</h2>
+        <h2>{{ this.data.name }}</h2>
         <v-col>
-          <p class="mb-0">Email : {{this.data.email}}</p>
+          <p class="mb-0">Email : {{ this.data.email }}</p>
         </v-col>
         <v-col>
-          <p class="mb-0">Phone number : {{this.data.phonenumber}}</p>
+          <p class="mb-0">Phone number : {{ this.data.phonenumber }}</p>
         </v-col>
         <v-col>
-          <p
-            v-if="this.data.dateOfBirth"
-            class="mb-0"
-          >Date of birth : {{this.data.dateOfBirth.slice(0,10)}}</p>
+          <p v-if="this.data.dateOfBirth" class="mb-0">
+            Date of birth : {{ this.data.dateOfBirth.slice(0, 10) }}
+          </p>
         </v-col>
         <v-col>
           <v-row class="justify-end">
-            <v-btn small color="success" class="mx-2" @click="openEditDialog">Edit</v-btn>
-            <v-btn small color="error" class="mx-2" @click="openDeleteDialog">Delete</v-btn>
+            <v-btn small color="success" class="mx-2" @click="openEditDialog"
+              >Edit</v-btn
+            >
+            <v-btn small color="error" class="mx-2" @click="openDeleteDialog"
+              >Delete</v-btn
+            >
           </v-row>
         </v-col>
       </v-card>
     </v-col>
-    <DeleteDialog :dialog="dialog.deleteDialog" :actionUrl="deleteUrl" objectName="Staff"></DeleteDialog>
-    <UpdateStaffDialog :dialog="dialog.editDialog" :data="data"></UpdateStaffDialog>
+    <DeleteDialog
+      :dialog="dialog.deleteDialog"
+      :actionUrl="deleteUrl"
+      objectName="Staff"
+    ></DeleteDialog>
+    <UpdateStaffDialog
+      :dialog="dialog.editDialog"
+      :data="data"
+    ></UpdateStaffDialog>
   </v-container>
 </template>
 
@@ -53,7 +63,7 @@ export default {
       return `http://localhost:3000/users/staff/${this.data._id}`;
     },
     ...mapState({
-      dialog: (state) => state.DialogModule
+      dialog: state => state.DialogModule
     }),
     console: () => console
   },

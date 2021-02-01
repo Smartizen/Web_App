@@ -12,11 +12,19 @@
       <v-card-text>
         <v-row>
           <v-col cols="12">
-            <v-text-field v-model="name" label="Legal Farm Name*" required></v-text-field>
+            <v-text-field
+              v-model="name"
+              label="Legal Farm Name*"
+              required
+            ></v-text-field>
           </v-col>
 
           <v-col cols="12">
-            <v-text-field v-model="plant" label="Plant*" required></v-text-field>
+            <v-text-field
+              v-model="plant"
+              label="Plant*"
+              required
+            ></v-text-field>
           </v-col>
 
           <v-col cols="12">
@@ -52,7 +60,12 @@ export default {
     plant: "",
     image: [],
     dialog: false,
-    rules: [(value) => !value || value.size < 2000000 || "Avatar size should be less than 2 MB!"],
+    rules: [
+      value =>
+        !value ||
+        value.size < 2000000 ||
+        "Avatar size should be less than 2 MB!"
+    ],
     newCrop: {
       id: "Add New Crop",
       name: "Add New Crop",
@@ -80,7 +93,10 @@ export default {
       try {
         const url = document.URL;
         const _id = url.substring(url.lastIndexOf("/") + 1);
-        let response = await axios.post("http://localhost:3000/crops/create/" + _id, formData);
+        let response = await axios.post(
+          "http://localhost:3000/crops/create/" + _id,
+          formData
+        );
         if (response.status === 201) {
           // create successfully
           this.$store.dispatch({ type: "getFarmData", _id });

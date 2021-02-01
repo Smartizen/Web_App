@@ -1,10 +1,10 @@
 const state = {
   deleteDialog: false,
-  editDialog: false,
+  editDialog: false
 };
 
 const getters = {
-  getEditItem: (state) => state.editItem
+  getEditItem: state => state.editItem
 };
 
 const mutations = {

@@ -7,7 +7,11 @@
 
     <v-col>
       <v-row>
-        <v-card v-for="farm in this.data.farms" :key="farm._id" :class="`d-flex ma-6`">
+        <v-card
+          v-for="farm in this.data.farms"
+          :key="farm._id"
+          :class="`d-flex ma-6`"
+        >
           <v-card @click="openFarmDetail(farm._id)">
             <CardInfo v-bind:data="farm" />
           </v-card>
@@ -42,7 +46,9 @@ export default {
   methods: {
     async getStaffInfo(_id) {
       try {
-        let response = await axios.get("http://localhost:3000/users/staff/" + _id);
+        let response = await axios.get(
+          "http://localhost:3000/users/staff/" + _id
+        );
         this.data = response.data;
       } catch (error) {
         console.log(error);

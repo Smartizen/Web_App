@@ -4,11 +4,11 @@ export default {
     drawer: false
   },
   getters: {
-    getDrawer: (state) => state.drawer
+    getDrawer: state => state.drawer
   },
   mutations: {
     // update LeftBar status
-    UPDATE_DRAWER: (state) => {
+    UPDATE_DRAWER: state => {
       return (state.drawer = !state.drawer);
     }
   },

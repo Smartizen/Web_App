@@ -8,11 +8,11 @@
       <NavWelcome />
     </div>
 
-    <v-content>
+    <v-main>
       <v-container fluid>
         <router-view />
       </v-container>
-    </v-content>
+    </v-main>
   </v-app>
 </template>
 
@@ -29,10 +29,10 @@ export default {
   components: {
     NavBar,
     LeftBar,
-    NavWelcome
+    NavWelcome,
   },
   computed: {
-    ...mapGetters(["isAuthenticated"])
-  }
+    ...mapGetters(["isAuthenticated"]),
+  },
 };
 </script>

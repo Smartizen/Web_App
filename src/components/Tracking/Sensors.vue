@@ -36,7 +36,7 @@ export default {
   },
   mounted: async function() {
     await this.getDataByTime("hour");
-    this.socket.on("changeData", (data) => {
+    this.socket.on("changeData", data => {
       console.log("data", data);
     });
   },
@@ -49,9 +49,12 @@ export default {
   methods: {
     getDataByTime: async function(bucket) {
       try {
-        let response = await axios.get(`http://localhost:3000/sensors/${bucket}/${this.data_id}`);
+        let response = await axios.get(
+          `http://localhost:3000/sensors/${bucket}/${this.data_id}`
+        );
         this.data = response.data;
-        if (bucket === "minute" && !this.isInit) this.initSocket(response.data[0]);
+        if (bucket === "minute" && !this.isInit)
+          this.initSocket(response.data[0]);
         this.isLoaded = false;
       } catch (error) {
         console.log(error);

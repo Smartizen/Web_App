@@ -5,7 +5,7 @@ const state = {
 };
 
 const getters = {
-  getDeviceList: (state) => state.devices
+  getDeviceList: state => state.devices
 };
 
 const mutations = {
@@ -26,7 +26,10 @@ const actions = {
   },
   addDevice: async ({ dispatch }, { cropId, device }) => {
     try {
-      const response = await axios.post("http://localhost:3000/devices/create/" + cropId, device);
+      const response = await axios.post(
+        "http://localhost:3000/devices/create/" + cropId,
+        device
+      );
       if (response.status === 201) {
         dispatch("getDeviceList", cropId);
       }

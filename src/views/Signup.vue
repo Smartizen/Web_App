@@ -8,17 +8,23 @@
           </v-toolbar>
           <v-card-text>
             <v-form>
-              <v-alert
-                :value="userExists"
-                color="error"
-                icon="warning"
-              >This user already exists, try a different set of data.</v-alert>
+              <v-alert :value="userExists" color="error" icon="warning"
+                >This user already exists, try a different set of data.</v-alert
+              >
 
               <v-text-field
                 prepend-icon="person"
-                name="login"
-                v-model="name"
-                label="Name"
+                name="firstname"
+                v-model="firstname"
+                label="First Name"
+                :rules="[rules.required]"
+              ></v-text-field>
+
+              <v-text-field
+                prepend-icon="person"
+                name="lastname"
+                v-model="lastname"
+                label="Last Name"
                 :rules="[rules.required]"
               ></v-text-field>
 
@@ -48,6 +54,14 @@
                 v-model="confirm_password"
                 :error="!valid()"
               ></v-text-field>
+
+              <v-text-field
+                prepend-icon="email"
+                name="gender"
+                v-model="gender"
+                label="Gender"
+                :rules="[rules.required]"
+              ></v-text-field>
             </v-form>
           </v-card-text>
           <v-divider light></v-divider>
@@ -72,14 +86,16 @@ export default {
   name: "signup",
   data: () => ({
     userExists: false,
-    name: "",
+    firstname: "",
+    lastname: "",
     email: "",
     password: "",
     confirm_password: "",
-    role: 1,
+    gender: "",
+    role: 2,
     rules: {
-      required: (value) => !!value || "Required",
-      email: (value) => {
+      required: value => !!value || "Required",
+      email: value => {
         const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return pattern.test(value) || "Invalid e-mail.";
       }
@@ -89,11 +105,13 @@ export default {
     ...mapActions(["register"]),
     registerUser() {
       this.register({
+        firstname: this.firstname,
+        lastname: this.lastname,
         email: this.email,
         password: this.password,
-        name: this.name,
+        gender: this.gender,
         role: this.role
-      }).then((success) => {
+      }).then(success => {
         if (success) this.$router.push("/home");
         else this.userExists = true;
       });

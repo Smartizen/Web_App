@@ -40,7 +40,9 @@ export default {
       oldPassword: "",
       newPassword: "",
       newPasswordConfirm: "",
-      confirmRule: [(v) => v === this.newPassword || "New Password confirmation must match"]
+      confirmRule: [
+        v => v === this.newPassword || "New Password confirmation must match"
+      ]
     };
   },
   methods: {
@@ -57,7 +59,10 @@ export default {
         newPasswordConfirm: this.newPasswordConfirm
       };
       try {
-        const response = await axios.patch("http://localhost:3000/users/changePassword", data);
+        const response = await axios.patch(
+          "http://localhost:3000/users/changePassword",
+          data
+        );
         if (response.status === 200) {
           let data = {
             user: {},

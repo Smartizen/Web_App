@@ -1,8 +1,10 @@
 <template>
   <v-card class="mx-auto" width="400">
     <v-card-text class="pt-0">
-      <div class="title font-weight-boil mb-2">{{this.crop.name}}</div>
-      <div class="subheading font-weight-light grey--text">{{this.crop.plant}}</div>
+      <div class="title font-weight-boil mb-2">{{ this.crop.name }}</div>
+      <div class="subheading font-weight-light grey--text">
+        {{ this.crop.plant }}
+      </div>
     </v-card-text>
 
     <v-img
@@ -18,7 +20,13 @@
         elevation="12"
         max-width="calc(100% - 32px)"
       >
-        <v-sparkline :labels="labels" :value="value" color="white" line-width="2" padding="16"></v-sparkline>
+        <v-sparkline
+          :labels="labels"
+          :value="value"
+          color="white"
+          line-width="2"
+          padding="16"
+        ></v-sparkline>
       </v-sheet>
 
       <v-sheet
@@ -27,7 +35,13 @@
         elevation="12"
         max-width="calc(100% - 32px)"
       >
-        <v-sparkline :labels="labels" :value="value" color="white" line-width="2" padding="16"></v-sparkline>
+        <v-sparkline
+          :labels="labels"
+          :value="value"
+          color="white"
+          line-width="2"
+          padding="16"
+        ></v-sparkline>
       </v-sheet>
     </div>
 
@@ -39,7 +53,9 @@
     <v-card-text>
       <v-divider class="my-2"></v-divider>
       <v-icon class="mr-2" small>mdi-clock</v-icon>
-      <span class="caption grey--text font-weight-light">last registration 26 minutes ago</span>
+      <span class="caption grey--text font-weight-light"
+        >last registration 26 minutes ago</span
+      >
     </v-card-text>
   </v-card>
 </template>
@@ -59,7 +75,9 @@ export default {
   }),
   created: async function() {
     try {
-      let response = await axios.get("http://localhost:3000/crops/" + this.data);
+      let response = await axios.get(
+        "http://localhost:3000/crops/" + this.data
+      );
       this.crop = response.data;
     } catch (error) {
       console.log(error);

@@ -8,7 +8,12 @@
     <h2 class="my-7">Actuators control</h2>
 
     <v-row class="justify-space-around">
-      <v-col cols="5" class="half-heigh" v-for="actuator in this.actuators" :key="actuator._id">
+      <v-col
+        cols="5"
+        class="half-heigh"
+        v-for="actuator in this.actuators"
+        :key="actuator._id"
+      >
         <Devices class="my-7" v-bind:data="actuator" />
       </v-col>
     </v-row>
@@ -41,7 +46,9 @@ export default {
   methods: {
     getActuators: async function() {
       try {
-        let response = await axios.get("http://localhost:3000/devices/" + this.data._id);
+        let response = await axios.get(
+          "http://localhost:3000/devices/" + this.data._id
+        );
 
         this.sensor = response.data.sensor;
         this.actuators = response.data.actuators;

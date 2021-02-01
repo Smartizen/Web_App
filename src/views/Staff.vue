@@ -2,7 +2,11 @@
   <v-row>
     <AddStaffForm />
 
-    <v-card v-for="staff in getStaffsLabel" :key="staff._id" :class="`d-flex ma-6`">
+    <v-card
+      v-for="staff in getStaffsLabel"
+      :key="staff._id"
+      :class="`d-flex ma-6`"
+    >
       <v-card @click="openUserDetail(staff._id)">
         <CardInfo v-bind:data="staff" />
       </v-card>
@@ -37,5 +41,4 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-</style>
+<style scoped></style>

@@ -5,10 +5,14 @@
         <span class="hidden-sm-and-down font-weight-bold">GoHydroponic</span>
       </v-toolbar-title>
       <div>
-        <v-btn class="font-weight-bold" text large :to="{ name: 'Welcome' }">Home</v-btn>
+        <v-btn class="font-weight-bold" text large :to="{ name: 'Welcome' }"
+          >Home</v-btn
+        >
       </div>
       <div>
-        <v-btn class="font-weight-bold" text large :to="{ name: 'About' }">About</v-btn>
+        <v-btn class="font-weight-bold" text large :to="{ name: 'About' }"
+          >About</v-btn
+        >
       </div>
       <v-spacer />
     </v-toolbar>

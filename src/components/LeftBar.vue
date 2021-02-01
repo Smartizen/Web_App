@@ -1,5 +1,9 @@
 <template>
-  <v-navigation-drawer :value="getDrawer" :clipped="$vuetify.breakpoint.lgAndUp" app>
+  <v-navigation-drawer
+    :value="getDrawer"
+    :clipped="$vuetify.breakpoint.lgAndUp"
+    app
+  >
     <v-list v-if="getUserInfo.role === 1" dense>
       <template v-for="item in items">
         <v-list-item :key="item.text" :to="item.link">
@@ -33,9 +37,9 @@ import { mapGetters } from "vuex";
 export default {
   name: "LeftBar",
   computed: {
-    ...mapGetters(["getDrawer", "getUserInfo"])
+    ...mapGetters(["getDrawer", "getUserInfo"]),
   },
-  mounted: async function() {
+  mounted: async function () {
     await this.getFarm();
   },
   watch: {
@@ -44,7 +48,7 @@ export default {
         this.checkLoadingFarm = JSON.stringify(this.getUserInfo);
         await this.getFarm();
       }
-    }
+    },
   },
   data: () => ({
     drawer: null,
@@ -52,10 +56,10 @@ export default {
     items: [
       { icon: "mdi-contacts", text: "Contacts", link: "/" },
       { icon: "mdi-account-box", text: "Staff", link: "/staff" },
-      { icon: "mdi-factory", text: "Farm", link: "/farm" }
+      { icon: "mdi-factory", text: "Farm", link: "/farm" },
       // { icon: "mdi-content-copy", text: "Device", link: "/device" }
     ],
-    staff_items: [{ icon: "mdi-contacts", text: "Contacts", link: "/" }]
+    staff_items: [{ icon: "mdi-contacts", text: "Contacts", link: "/" }],
   }),
   methods: {
     async getFarm() {
@@ -73,7 +77,7 @@ export default {
         );
         this.staff_items = this.staff_items.concat(farms);
       }
-    }
-  }
+    },
+  },
 };
 </script>
