@@ -29,10 +29,10 @@ export default {
   components: {
     NavBar,
     LeftBar,
-    NavWelcome,
+    NavWelcome
   },
   computed: {
-    ...mapGetters(["isAuthenticated"]),
-  },
+    ...mapGetters(["isAuthenticated"])
+  }
 };
 </script>

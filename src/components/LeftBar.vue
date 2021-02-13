@@ -37,9 +37,9 @@ import { mapGetters } from "vuex";
 export default {
   name: "LeftBar",
   computed: {
-    ...mapGetters(["getDrawer", "getUserInfo"]),
+    ...mapGetters(["getDrawer", "getUserInfo"])
   },
-  mounted: async function () {
+  mounted: async function() {
     await this.getFarm();
   },
   watch: {
@@ -48,7 +48,7 @@ export default {
         this.checkLoadingFarm = JSON.stringify(this.getUserInfo);
         await this.getFarm();
       }
-    },
+    }
   },
   data: () => ({
     drawer: null,
@@ -56,17 +56,17 @@ export default {
     items: [
       { icon: "mdi-contacts", text: "Contacts", link: "/" },
       { icon: "mdi-account-box", text: "Staff", link: "/staff" },
-      { icon: "mdi-factory", text: "Farm", link: "/farm" },
+      { icon: "mdi-factory", text: "Farm", link: "/farm" }
       // { icon: "mdi-content-copy", text: "Device", link: "/device" }
     ],
-    staff_items: [{ icon: "mdi-contacts", text: "Contacts", link: "/" }],
+    staff_items: [{ icon: "mdi-contacts", text: "Contacts", link: "/" }]
   }),
   methods: {
     async getFarm() {
       if (this.getUserInfo.role === 2) {
         let farms = [];
         await Promise.all(
-          this.getUserInfo.farms.map((farm) => {
+          this.getUserInfo.farms.map(farm => {
             let item = {};
             item.icon = "mdi-factory";
             item.text = farm.name;
@@ -77,7 +77,7 @@ export default {
         );
         this.staff_items = this.staff_items.concat(farms);
       }
-    },
-  },
+    }
+  }
 };
 </script>
