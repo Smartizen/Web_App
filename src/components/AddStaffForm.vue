@@ -130,8 +130,8 @@ export default {
         "Avatar size should be less than 2 MB!"
     ],
     newStaff: {
-      id: "add new staff",
-      name: "add new staff",
+      id: "Add new staff",
+      name: "Add new staff",
       image:
         "https://icons-for-free.com/iconfiles/png/512/circle+more+plus+icon-1320183136549593898.png",
       location: ""

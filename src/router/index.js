@@ -2,7 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Login from "../views/Login.vue";
-import Signup from "../views/Signup.vue";
+// import Signup from "../views/Signup.vue";
 import Farm from "../views/Farm.vue";
 import FarmDetail from "../views/FarmDetail.vue";
 import Staff from "../views/Staff.vue";
@@ -98,12 +98,12 @@ const routes = [
     component: Login
     // beforeEnter: ifNotAuthenticated
   },
-  {
-    path: "/signup",
-    name: "Signup",
-    component: Signup
-    // beforeEnter: ifNotAuthenticated
-  },
+  // {
+  //   path: "/signup",
+  //   name: "Signup",
+  //   component: Signup
+  //   beforeEnter: ifNotAuthenticated
+  // },
   {
     path: "/change-password",
     name: "ChangePassword",
