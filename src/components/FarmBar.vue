@@ -7,13 +7,18 @@
       app
     >
       <v-list dense>
-        <v-list-item class="px-2" v-for="item in items" :key="item.title" link>
+        <v-list-item
+          class="px-2"
+          v-for="item in items"
+          :key="item.title"
+          :to="item.link"
+        >
           <v-list-item-avatar v-if="!!item.image">
             <v-img v-bind:src="item.image"></v-img>
           </v-list-item-avatar>
 
           <v-list-item-content>
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
+            <v-list-item-title>{{ item.name }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
 
@@ -33,67 +38,26 @@ export default {
     AddFarmForm,
   },
   computed: {
-    ...mapGetters(["getDrawer", "getUserInfo"]),
+    ...mapGetters(["getFarmLabel"]),
+    reverseMessage() {
+      return this.getFarmLabel;
+    },
   },
   mounted: async function () {
-    await this.getFarm();
+    this.items = this.getFarmLabel;
   },
+
   watch: {
-    async getUserInfo() {
-      if (JSON.stringify(this.getUserInfo) !== this.checkLoadingFarm) {
-        this.checkLoadingFarm = JSON.stringify(this.getUserInfo);
-        await this.getFarm();
-      }
+    reverseMessage() {
+      this.items = this.getFarmLabel;
     },
   },
   data() {
     return {
       drawer: true,
-      items: [
-        {
-          title: "Add Home",
-          image: "https://randomuser.me/api/portraits/men/85.jpg",
-        },
-        {
-          title: "Add Home",
-          image: "https://randomuser.me/api/portraits/men/85.jpg",
-        },
-        {
-          title: "Add Home",
-          image: "https://randomuser.me/api/portraits/men/85.jpg",
-        },
-      ],
-      mini: true,
+      items: [],
     };
   },
-  // data: () => ({
-  //   drawer: null,
-  //   checkLoadingFarm: "",
-  //   items: [
-  //     { icon: "mdi-contacts", text: "Contacts", link: "/" },
-  //     { icon: "mdi-account-box", text: "Staff", link: "/staff" },
-  //     { icon: "mdi-factory", text: "Farm", link: "/farm" },
-  //     // { icon: "mdi-content-copy", text: "Device", link: "/device" }
-  //   ],
-  //   staff_items: [{ icon: "mdi-contacts", text: "Contacts", link: "/" }],
-  // }),
-  methods: {
-    async getFarm() {
-      if (this.getUserInfo.role === 2) {
-        let farms = [];
-        await Promise.all(
-          this.getUserInfo.farms.map((farm) => {
-            let item = {};
-            item.icon = "mdi-factory";
-            item.text = farm.name;
-            item.link = `/farm/${farm._id}`;
-            farms.push(item);
-            Promise.resolve(farms);
-          })
-        );
-        this.staff_items = this.staff_items.concat(farms);
-      }
-    },
-  },
+  methods: {},
 };
 </script>

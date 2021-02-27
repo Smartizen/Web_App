@@ -48,10 +48,10 @@ export default {
     NavBar,
     FarmBar,
     LeftBar,
-    NavWelcome,
+    NavWelcome
   },
   computed: {
-    ...mapGetters(["isAuthenticated"]),
-  },
+    ...mapGetters(["isAuthenticated"])
+  }
 };
 </script>

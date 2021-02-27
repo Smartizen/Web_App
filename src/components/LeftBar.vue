@@ -54,6 +54,8 @@ export default {
     items: [
       { icon: "mdi-contacts", text: "Contacts", link: "/" },
       { icon: "mdi-account-box", text: "Staff", link: "/staff" },
+      { icon: "mdi-account-box", text: "Crop", link: "/crop" },
+      { icon: "mdi-content-copy", text: "Device", link: "/device" },
     ],
     staff_items: [{ icon: "mdi-contacts", text: "Contacts", link: "/" }],
   }),

@@ -34,7 +34,6 @@
             </v-col>
 
             <v-file-input
-              v-model="image"
               :rules="rules"
               accept="image/png, image/jpeg, image/bmp"
               prepend-icon="mdi-camera"
@@ -60,22 +59,16 @@
 </style>
 
 <script>
-import axios from "axios";
+import { mapActions } from "vuex";
 
 export default {
   name: "AddFarmForm",
   data: () => ({
     name: "",
     location: "",
-    image: [], // default image
+    image: "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg", // default image
     dialog: false,
-    newStaff: {
-      id: "Add New Farm",
-      name: "Add New Farm",
-      image:
-        "https://icons-for-free.com/iconfiles/png/512/circle+more+plus+icon-1320183136549593898.png",
-      location: "",
-    },
+
     date: new Date().toISOString().substr(0, 10),
     menu: false,
     rules: [
@@ -86,33 +79,22 @@ export default {
     ],
   }),
   methods: {
+    ...mapActions(["newFarm", "getMyFarm"]),
     async onCreateFarm() {
       this.dialog = false;
-      const payload = new FormData();
-      let image =
-        this.image !== []
-          ? this.image
-          : "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg";
-      payload.append("image", image);
-      payload.append("name", this.name);
-      payload.append("location", this.location);
 
-      try {
-        let response = await axios.post(
-          "http://localhost:3000/farms/create",
-          payload
-        );
-        if (response.status === 201) {
-          // create successfully
-          this.$store.dispatch("validateToken");
-          return true;
-        } else return false;
-      } catch (error) {
-        return false;
-      } finally {
-        this.image = [];
-      }
+      let payload = {};
+      payload.image = this.image;
+      payload.name = this.name;
+      payload.location = this.location;
+
+      this.newFarm(payload).then((success) => {
+        console.log(success);
+      });
     },
+  },
+  beforeMount() {
+    this.getMyFarm();
   },
 };
 </script>

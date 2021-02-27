@@ -68,8 +68,6 @@ export default {
         commit("UPDATE_USER_INFO", response);
         // // update staff label
         commit("UPDATE_STAFFSLABEL", response.user);
-        // // update farm label
-        commit("UPDATE_FARMLABEL", response.user);
         return true;
       } catch (error) {
         console.log("validateToken", error);

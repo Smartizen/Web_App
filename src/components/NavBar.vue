@@ -61,7 +61,7 @@ import { mapActions, mapGetters } from "vuex";
 export default {
   name: "NavBar",
   computed: {
-    ...mapGetters(["getUserInfo"])
+    ...mapGetters(["getUserInfo"]),
   },
   methods: {
     ...mapActions(["updateDrawer", "logout", "logoutAll"]),
@@ -73,7 +73,7 @@ export default {
     },
     changePassword() {
       this.$router.push({ name: "ChangePassword" });
-    }
-  }
+    },
+  },
 };
 </script>

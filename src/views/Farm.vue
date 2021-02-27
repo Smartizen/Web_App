@@ -16,21 +16,21 @@ import { mapGetters } from "vuex";
 export default {
   name: "Farm",
   components: {
-    CardInfo,
+    CardInfo
   },
   data: () => ({}),
   created() {
     this.$store.dispatch("validateToken");
   },
   computed: {
-    ...mapGetters(["getFarmLabel"]),
+    ...mapGetters(["getFarmLabel"])
   },
   methods: {
     // Open farm detail
     async openFarmDetail(_id) {
       this.$router.push("/farm/" + _id);
-    },
-  },
+    }
+  }
 };
 </script>
 
