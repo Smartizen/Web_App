@@ -18,7 +18,6 @@ export default {
   mutations: {
     // update User info
     UPDATE_USER_INFO: (state, { user }) => {
-      console.log("user", user);
       return (state.user = user);
     },
     // update LeftBar status

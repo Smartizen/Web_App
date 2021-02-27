@@ -1,9 +1,14 @@
 <template>
   <v-dialog v-model="dialog" persistent max-width="600px">
     <template v-slot:activator="{ on }">
-      <v-card v-on="on" :class="`d-flex ma-6`">
-        <CardInfo v-bind:data="newStaff" />
-      </v-card>
+      <v-list-item class="px-2" v-on="on">
+        <v-list-item-icon class="icon">
+          <v-icon x-large>add</v-icon>
+        </v-list-item-icon>
+        <v-list-item-content>
+          <v-list-item-title>Add Home</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
     </template>
     <v-card>
       <v-card-title>
@@ -32,7 +37,6 @@
               v-model="image"
               :rules="rules"
               accept="image/png, image/jpeg, image/bmp"
-              placeholder="Pick an image"
               prepend-icon="mdi-camera"
               label="Upload Image"
             ></v-file-input>
@@ -48,13 +52,18 @@
   </v-dialog>
 </template>
 
+<style scoped>
+.icon {
+  height: 40px !important;
+  margin-right: 16px !important;
+}
+</style>
+
 <script>
-import CardInfo from "@/components/CardInfo.vue";
 import axios from "axios";
 
 export default {
   name: "AddFarmForm",
-  components: { CardInfo },
   data: () => ({
     name: "",
     location: "",
@@ -65,16 +74,16 @@ export default {
       name: "Add New Farm",
       image:
         "https://icons-for-free.com/iconfiles/png/512/circle+more+plus+icon-1320183136549593898.png",
-      location: ""
+      location: "",
     },
     date: new Date().toISOString().substr(0, 10),
     menu: false,
     rules: [
-      value =>
+      (value) =>
         !value ||
         value.size < 2000000 ||
-        "Avatar size should be less than 2 MB!"
-    ]
+        "Avatar size should be less than 2 MB!",
+    ],
   }),
   methods: {
     async onCreateFarm() {
@@ -103,7 +112,7 @@ export default {
       } finally {
         this.image = [];
       }
-    }
-  }
+    },
+  },
 };
 </script>
